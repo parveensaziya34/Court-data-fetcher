@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verify CAPTCHA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .captcha-container { max-width: 400px; margin: 50px auto; }
+        .captcha-img { border: 1px solid #dee2e6; border-radius: 5px; padding: 10px; background: #f8f9fa; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="captcha-container">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5 class="text-center">Verify CAPTCHA</h5>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <img src="data:image/jpeg;base64,{{ captcha_image }}" class="captcha-img mb-3">
+                        <p>Enter the characters shown in the image above</p>
+                    </div>
+                    <form method="POST" action="/results">
+                        <input type="hidden" name="token" value="{{ token }}">
+                        <div class="mb-3">
+                            <input type="text" class="form-control text-center" 
+                                   id="captcha_text" name="captcha_text" 
+                                   required autocomplete="off">
+                        </div>
+                        <button type="submit" class="btn btn-info w-100">Submit CAPTCHA</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
